@@ -5,7 +5,7 @@ const Header: Component = () => {
     return (
         <header>
             <div class="container">
-                <a href="/" class="logo">
+                <a href="/categories" class="logo">
                     <img src="/logo.gif" alt="Logo" />
                     Bookbinding Tutorials
                 </a>
