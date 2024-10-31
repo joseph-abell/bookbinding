@@ -8,7 +8,7 @@ import CategoryDetail from './pages/CategoryDetail';
 const App: Component = () => {
   return (
     <Router>
-      <Route path="/" component={Home} />
+      <Route path="/bookbinding" component={Home} />
       <Route path="/category/:slug" component={CategoryDetail} />
       <Route path="/:slug" component={TutorialDetail} />
     </Router>
