@@ -1,0 +1,15 @@
+# Node modules
+node_modules/
+
+# TypeScript
+*.tsbuildinfo
+
+# dotenv environment variables file
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Solid.js build output
+dist/
