@@ -16,7 +16,7 @@ const categories: Category[] = [
     {
         slug: 'pdfs',
         title: 'PDFs',
-        description: 'Downloadable PDFs for bookbinding projects.',
+        description: 'Books in the public domain, ordered in signatures, ready for you to print.',
         tutorials: ['history-of-the-art-of-bookbinding']
     },
     {

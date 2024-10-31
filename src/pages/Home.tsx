@@ -7,7 +7,23 @@ import homepageData from '../data/homepage';
 import TutorialCard from '../components/TutorialCard';
 import Header from '../components/Header';
 
+import { createEffect } from 'solid-js';
+
 const Home: Component = () => {
+  createEffect(() => {
+    document.title = homepageData.title;
+    const metaDescription = document.querySelector('meta[name="description"]');
+
+    if (metaDescription) {
+      metaDescription.setAttribute('content', homepageData.metaDescription);
+    } else {
+      const newMetaDescription = document.createElement('meta');
+      newMetaDescription.name = 'description';
+      newMetaDescription.content = homepageData.metaDescription;
+      document.head.appendChild(newMetaDescription);
+    }
+  });
+
   return (
     <>
       <Header />
@@ -35,10 +51,7 @@ const Home: Component = () => {
               </div>
             </section>
           )}
-
-            
         </For>
-        
       </div>
     </>
   );

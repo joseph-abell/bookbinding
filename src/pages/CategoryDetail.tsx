@@ -1,4 +1,4 @@
-import { Component, createMemo, For } from 'solid-js';
+import { Component, createEffect, createMemo, For } from 'solid-js';
 import tutorialData from '../data/tutorials';
 import categories from '../data/categories';
 import TutorialCard from '../components/TutorialCard';
@@ -11,6 +11,24 @@ const CategoryDetail: Component = () => {
 
     const category = createMemo(() => categories.find(c => c.slug === params.slug));
     const tutorials = createMemo(() => category()?.tutorials.map(t => tutorialData.find(tut => tut.slug === t)).filter(t => Boolean(t)) as Tutorial[]);
+
+    createEffect(() => {
+        if (category()) {
+            document.title = category()?.title || 'Bookbinding Tutorials';
+            
+            const metaDescription = document.querySelector('meta[name="description"]');
+        
+            if (metaDescription) {
+                metaDescription.setAttribute('content', category()?.description || '');
+            } else {
+                const newMetaDescription = document.createElement('meta');
+                newMetaDescription.name = 'description';
+                newMetaDescription.content = category()?.description || '';
+                document.head.appendChild(newMetaDescription);
+            }
+        }
+    });
+
     return (
         <>
             <Header />

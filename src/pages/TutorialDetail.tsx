@@ -1,4 +1,4 @@
-import { Component, createMemo, For } from 'solid-js';
+import { Component, createEffect, createMemo, For } from 'solid-js';
 import { useParams } from '@solidjs/router';
 import { tutorials } from '../data/tutorials';
 import Header from '../components/Header';
@@ -9,6 +9,23 @@ const TutorialDetail: Component = () => {
   const tutorial = createMemo(() => 
     tutorials.find(t => t.slug === params.slug)
   );
+
+  createEffect(() => {
+    if (tutorial()) {
+        document.title = tutorial()?.title || 'Bookbinding Tutoriials';
+        
+        const metaDescription = document.querySelector('meta[name="description"]');
+    
+        if (metaDescription) {
+            metaDescription.setAttribute('content', tutorial()?.description || '');
+        } else {
+            const newMetaDescription = document.createElement('meta');
+            newMetaDescription.name = 'description';
+            newMetaDescription.content = tutorial()?.description || '';
+            document.head.appendChild(newMetaDescription);
+        }
+    }
+});
 
   return (
     <>
